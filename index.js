@@ -44,7 +44,7 @@ function viewCart() {
 
 function total() {
   var priceList = [];
-  var sum = 0
+  //var sum = 0
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
   for (var i = 0; i < cart.length; i++) {
   //var object = cart[i];
