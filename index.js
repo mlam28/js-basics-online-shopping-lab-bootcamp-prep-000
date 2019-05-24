@@ -1,4 +1,4 @@
-var cart = [];
+lvar cart = [];
 
 function getCart() {
  return cart;
@@ -44,20 +44,39 @@ function viewCart() {
 
 function total() {
   var priceList = [];
-  for (var i = 0; i < cart.length; i++) {
   var sum = 0
-  var object = cart[i];
-  var key2 = Object.keys(cart)[1];
-  var price = (object[key2]);
-  var total = sum + parseInt(price);
-  return total;
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
+  for (var i = 0; i < cart.length; i++) {
+  //var object = cart[i];
+  //var key2 = Object.keys(cart[1]);
+  //var price = (object[key2]);
+  //priceList.push(parseInt(price))
+   priceList.push(cart[i].itemPrice);
 }
+ return (priceList.reduce(reducer))
 }
 
+
 function removeFromCart(item) {
-  if 
+  
+  for (var i = 0; i < cart.length; i++) {
+  var object = cart[i]
+  var key = Object.keys(cart[0])
+  var itemName = object[key]
+  if (cart[i].itemName === item) {
+      cart.splice(i, 1)
+      return cart
+    }
+  }
+  return "That item is not in your cart."
 }
 
 function placeOrder(cardNumber) {
-  // write your code here
+  if(cardNumber === undefined) {
+    return "Sorry, we don't have a credit card on file for you."
+  }
+  else if(cart.length > 0) {
+   cart.length = 0
+    return `Your total cost is ${total()}, which will be charged to the card ${cardNumber}.`
+  }
 }
